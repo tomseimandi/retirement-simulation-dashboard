@@ -39,7 +39,13 @@ jobs:
 
       - name: Build page with Quarto
         run: |
-          quarto render --output-dir _build
+          quarto render retirement.qmd
+
+      - name: Move/copy files to _build/ dir
+        run: |
+          mkdir _build
+          mv retirement.html retirement_files app.py _build/
+          cp retirement-logo.png _build/
 
       - name: Create shinylive site
         run: shinylive export _build _site
